@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 </div>
-                <div>
+                
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-header">
@@ -82,20 +82,20 @@
                             </div>
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <%for(Post p:postByCategory){%>
+                                <%for(Post p:postByCategory){%>
                                         
-                                            <%if(p.getPid()!=post.getPid()){%>
+                                <%if(p.getPid()!=post.getPid()){%>
                                             <li class="list-group-item">
                                                 <a href="SinglePost.jsp?id=<%= p.getPid()%>"><%= p.getTitle()%></a>
                                             </li>
-                                            <%}%>
+                                <%}%>
                                         
-                                    <%}%>
+                                <%}%>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
+               
             </div>
                  
         </div>
