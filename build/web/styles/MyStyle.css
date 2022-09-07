@@ -1,0 +1,34 @@
+/* 
+    Created on : Sep 3, 2022, 12:04:12 PM
+    Author     : ACT
+*/
+
+
+:root{
+    --primary-color:#2196f3;
+}
+
+.primary-backgroud{
+    background:var(--primary-color) ;
+}
+
+
+.wrapper{
+    background: var(--primary-color);
+}
+
+.footer{
+    background: var(--primary-color);
+
+}
+
+.alert{
+    margin-bottom:0 !important;
+}
+
+.profile_img{
+    width:30rem;
+    height:30rem;
+    border-radius: 50%;
+    border:2px solid white;
+}
