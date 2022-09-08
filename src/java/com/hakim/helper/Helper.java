@@ -21,7 +21,7 @@ public class Helper {
 
     public static boolean deleteFile(String path) {
         boolean deleted;
-
+        System.out.println(path);
         File file = new File(path);
         file.delete();
         deleted = true;

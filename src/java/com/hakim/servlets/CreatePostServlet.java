@@ -50,7 +50,7 @@ public class CreatePostServlet extends HttpServlet {
             User user=(User)session.getAttribute("user");
             int user_id=user.getId();
             
-            String full_path=PathLocator.getPostPicPath(request, user.getName(), user_id,pic_name );
+            String full_path=PathLocator.getPostPicUploadPath(request, user.getName(), user_id,pic_name );
             
             Helper.saveFile(part.getInputStream(), full_path);
             

@@ -47,9 +47,8 @@ public class EditProfileServlet extends HttpServlet {
             Part part=request.getPart("profile_pic");
             String profile_pic=part==null ? user.getProfile_pic() : part.getSubmittedFileName();
             
-            String uploading_path=PathLocator.getProfilePicPath(request, profile_pic);
-            String deletingPath=PathLocator.getProfilePicPath(request, user.getProfile_pic());
-            
+            String uploading_path=PathLocator.getProfilePicUploadPath(request, profile_pic,user.getId());
+            String deletingPath=PathLocator.getProfilePicDeletePath(request, user.getProfile_pic());
             
             if(!user.getProfile_pic().equals("default.jpg")){
                 Helper.deleteFile(deletingPath);
@@ -59,7 +58,7 @@ public class EditProfileServlet extends HttpServlet {
             
             Connection connection=ConnectionProvider.getConnection();
             UserDao dao=new UserDao(connection);
-            boolean updated=dao.updateUser(name, email, bio, profile_pic);
+            boolean updated=dao.updateUser(name, email, bio, PathLocator.newProfilePicFullName(profile_pic, user.getId()));
             if(!updated){
                 out.print("<div class=\"alert alert-primary mb-0\" role=\"alert\">Could not update profile.</div>");
                 dispatcher.include(request, response);

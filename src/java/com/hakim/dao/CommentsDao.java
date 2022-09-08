@@ -71,4 +71,20 @@ public class CommentsDao {
         
         return count;
     }
+    
+    public boolean deleteCommentsRelatedToPost(int pid){
+        boolean done=false;
+        
+        try(PreparedStatement statement=con.prepareStatement("delete from comments where pid = ?")){
+            statement.setInt(1, pid);
+                      
+            statement.executeUpdate();
+            
+            done=true;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return done;
+    }
 }

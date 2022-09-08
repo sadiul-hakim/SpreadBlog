@@ -41,7 +41,7 @@ public class LikesDao {
            
             statement.executeUpdate();
             
-            
+            disliked=true;
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -88,5 +88,21 @@ public class LikesDao {
         }
         
         return liked;
+    }
+    
+    public boolean deleteLikesRelatedToPost(int pid){
+        boolean done=false;
+        
+        try(PreparedStatement statement=con.prepareStatement("delete from likes where pid = ?")){
+            statement.setInt(1, pid);
+                      
+            statement.executeUpdate();
+            
+            done=true;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return done;
     }
 }
