@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.hakim.entities.Post" %>
 <%@page import="com.hakim.entities.User" %>
+<%@page import="com.hakim.entities.Comment" %>
 <%@page import="com.hakim.helper.ConnectionProvider" %>
 <%@page import="com.hakim.dao.PostDao" %>
 <%@page import="com.hakim.dao.UserDao" %>
@@ -30,6 +31,9 @@
     LikesDao likes_dao=new LikesDao(ConnectionProvider.getConnection());
     int count=likes_dao.likeCount(post.getPid());
     boolean liked=likes_dao.liked(user.getId(),post.getPid());
+    
+    //Getting all comments
+    List<Comment> comments=ServerCall.getAllCommentsOfAPost(post.getPid(),ConnectionProvider.getConnection());
 %>
 
 <!DOCTYPE html>
@@ -68,12 +72,35 @@
                         
                             <%}%>
                 </div>
-                    <div class="card-footer d-flex align-content-center justify-content-between">
-                        <a href="LikingServlet?liked=<%= liked%>&pid=<%= post.getPid()%>&uid=<%= user.getId()%>" class="btn"><%= count%> <i class="fa fa-thumbs-o-up"></i> <%if(liked){%>Liked<%}else{%>Like<%}%></a>
+                    <div class="card-footer">
+                        <div class=" d-flex align-content-center justify-content-between">
+                            <a href="LikingServlet?liked=<%= liked%>&pid=<%= post.getPid()%>&uid=<%= user.getId()%>" class="btn"><%= count%> <i class="fa fa-thumbs-o-up"></i> <%if(liked){%>Liked<%}else{%>Like<%}%></a>
                         <form action="CommentServlet" method="post">
                             <input type="text" name="comment" placeholder="comment" style="width:20rem;"/>
-                            <input type="submit" value="comment"/>
+                            <input type="hidden" name="pid" value="<%= post.getPid()%>"/>
+                            <input type="hidden" name="uid" value="<%= user.getId()%>"/>
+                            <input type="hidden" name="username" value="<%= user.getName()%>"/>
+                            <input type="hidden" name="userpic" value="<%= user.getProfile_pic()%>"/>
+                            <input type="submit" value="comment <%= comments.size()%>"/>
                         </form>
+                        </div>
+                       
+                            <ul class="list-group">
+                                <%for(Comment c:comments){%>
+                                <li class="list-group-item d-flex">
+                                    <img src="profile_pics/<%= c.getUserpic()%>" alt="user" width="60px" height="60px" style="border-radius: 50%;margin-right: 10px;"/>
+                                    <div class="d-flex flex-column w-100" >
+                                        <small class="text-muted"><%= c.getComtime()%></small>
+                                        <p class="lead d-flex justify-content-between">
+                                            <span><%= c.getCommenttext()%></span>
+                                            <a href="DeleteCommentServlet?pid=<%= post.getPid()%>&comid=<%= c.getComid()%>" class="btn">delete</a>
+                                        </p>
+                                        
+                                    </div>
+                                </li>
+                                                <%}%>
+                            </ul>
+                        
                     </div>
                 </div>
                 </div>
@@ -85,15 +112,15 @@
                             </div>
                             <div class="card-body">
                                 <ul class="list-group">
-                                <%for(Post p:postByCategory){%>
+                                                                <%for(Post p:postByCategory){%>
                                         
-                                <%if(p.getPid()!=post.getPid()){%>
+                                                                <%if(p.getPid()!=post.getPid()){%>
                                             <li class="list-group-item">
                                                 <a href="SinglePost.jsp?id=<%= p.getPid()%>"><%= p.getTitle()%></a>
                                             </li>
-                                <%}%>
+                                                                <%}%>
                                         
-                                <%}%>
+                                                                <%}%>
                                 </ul>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ public class CommentsDao {
     
     public boolean addComment(int pid,int uid,String text,String name,String pic){
         boolean done=false;
-        String query="insert into comments(commenttext,uid,pid,username,userpic) values(?,?,?,?,?,?)";
+        String query="insert into comments(commenttext,uid,pid,username,userpic) values(?,?,?,?,?)";
         try(PreparedStatement statement=con.prepareStatement(query)){
             statement.setObject(1, text);
             statement.setObject(2, uid);
@@ -41,7 +41,7 @@ public class CommentsDao {
         String query="delete from comments where pid=? and comid=?";
         try(PreparedStatement statement=con.prepareStatement(query)){
            statement.setObject(1, pid);
-           statement.setObject(1, comid);
+           statement.setObject(2, comid);
            
             statement.executeUpdate();
             done=true;
@@ -52,7 +52,7 @@ public class CommentsDao {
         return done;
     }
     
-    public int likeCount(int pid){
+    public int count(int pid){
         int count=0;
         
         String query="select count(*) from comments where pid = ?";

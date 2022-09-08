@@ -22,6 +22,7 @@ public class Comment {
         this.commenttext = commenttext;
         this.username = username;
         this.userpic = userpic;
+        this.comtime=comtime;
     }
 
     public Comment() {

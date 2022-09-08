@@ -36,6 +36,10 @@
         <servlet-name>CommentServlet</servlet-name>
         <servlet-class>com.hakim.servlets.CommentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCommentServlet</servlet-name>
+        <servlet-class>com.hakim.servlets.DeleteCommentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/EditProfileServlet</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>CommentServlet</servlet-name>
         <url-pattern>/CommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCommentServlet</servlet-name>
+        <url-pattern>/DeleteCommentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

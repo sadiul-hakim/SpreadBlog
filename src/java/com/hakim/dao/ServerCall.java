@@ -1,6 +1,7 @@
 package com.hakim.dao;
 
 import com.hakim.entities.Category;
+import com.hakim.entities.Comment;
 import com.hakim.entities.Post;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -91,6 +92,36 @@ public class ServerCall {
             Logger.getLogger(ServerCall.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(list+"=> from back");
+        return list;
+    }
+    
+    public static List<Comment> getAllCommentsOfAPost(int pid,Connection con){
+        String query="select * from comments where pid=?;";
+        List<Comment> list=new ArrayList<>();
+        
+        try(PreparedStatement statement=con.prepareStatement(query)){
+            statement.setObject(1, pid);
+            ResultSet set=statement.executeQuery();
+            
+            while(set.next()){
+                list.add(
+                        new Comment(
+                                set.getInt("comid"),
+                                set.getInt("pid"),
+                                set.getInt("uid"),
+                                set.getString("commenttext"),
+                                set.getString("username"),
+                                set.getString("userpic"),
+                                set.getTimestamp("comtime")
+                        )
+                );
+                
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
         return list;
     }
 }

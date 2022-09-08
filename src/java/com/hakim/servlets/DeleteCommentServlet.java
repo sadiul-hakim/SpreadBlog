@@ -1,4 +1,3 @@
-
 package com.hakim.servlets;
 
 import com.hakim.dao.CommentsDao;
@@ -12,7 +11,7 @@ import java.io.PrintWriter;
  *
  * @author ACT
  */
-public class CommentServlet extends HttpServlet {
+public class DeleteCommentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,23 +27,15 @@ public class CommentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-           
             int pid=Integer.parseInt(request.getParameter("pid"));
-            int uid=Integer.parseInt(request.getParameter("uid"));
-            String username=request.getParameter("username");
-            String userpic=request.getParameter("userpic");
-            String comment=request.getParameter("comment");
+            int comid=Integer.parseInt(request.getParameter("comid"));
             
             CommentsDao dao=new CommentsDao(ConnectionProvider.getConnection());
-            boolean added=dao.addComment(pid, uid, comment, username, userpic);
+            boolean done=dao.removeComment(pid, comid);
             
-            if(added){
+            if(done){
                 response.sendRedirect("SinglePost.jsp?id="+pid);
             }
-            
-        }catch(Exception e){
-            e.printStackTrace();
         }
     }
 
