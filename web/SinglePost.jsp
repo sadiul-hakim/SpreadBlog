@@ -90,7 +90,7 @@
                                 <li class="list-group-item d-flex">
                                     <img src="profile_pics/<%= c.getUserpic()%>" alt="user" width="60px" height="60px" style="border-radius: 50%;margin-right: 10px;"/>
                                     <div class="d-flex flex-column w-100" >
-                                        <small class="text-muted"><%= c.getComtime()%></small>
+                                        <small class="text-muted"><a href="SingleUser.jsp?id=<%= c.getUid()%>"><%= c.getUsername()%></a> | <%= c.getComtime()%></small>
                                         <p class="lead d-flex justify-content-between">
                                             <span><%= c.getCommenttext()%></span>
                                             <a href="DeleteCommentServlet?pid=<%= post.getPid()%>&comid=<%= c.getComid()%>" class="btn">delete</a>
