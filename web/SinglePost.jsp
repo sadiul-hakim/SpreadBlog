@@ -68,9 +68,12 @@
                         
                             <%}%>
                 </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-flex align-content-center justify-content-between">
                         <a href="LikingServlet?liked=<%= liked%>&pid=<%= post.getPid()%>&uid=<%= user.getId()%>" class="btn"><%= count%> <i class="fa fa-thumbs-o-up"></i> <%if(liked){%>Liked<%}else{%>Like<%}%></a>
-                        <a href="" class="btn"><i class=" 	fa fa-commenting-o"></i> Comment</a>
+                        <form action="CommentServlet" method="post">
+                            <input type="text" name="comment" placeholder="comment" style="width:20rem;"/>
+                            <input type="submit" value="comment"/>
+                        </form>
                     </div>
                 </div>
                 </div>

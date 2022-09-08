@@ -32,3 +32,15 @@
     border-radius: 50%;
     border:2px solid white;
 }
+
+.comment-form{
+    
+}
+.comment-field{
+    width:25rem;
+    border-bottom:1.5px solid #333;
+    outline:none; 
+    border-left:none;
+    border-right:none;
+    border-top:none;
+}
