@@ -11,6 +11,12 @@
 <%@page import="com.hakim.dao.ServerCall" %>
 
 <%
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+    
+    
     List<Category> categories=ServerCall.getCategories(ConnectionProvider.getConnection());
 %>
 
@@ -24,7 +30,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mx-auto mt-5">
+                <div class="col-md-6 mx-auto mt-4">
                     <div class="card ">
                         <div class="card-header">
                             <h5 class="card-text">Create Post </h5>
@@ -43,10 +49,10 @@
                                 </select>
                                 
                                 <label>Content : </label><br/>
-                                <textarea name="content" class="form-control"></textarea>
+                                <textarea name="content" class="form-control" rows="5"></textarea>
                                 
                                 <label id="code-label">Code : </label><br/>
-                                <textarea name="code" class="form-control" id="code"></textarea>
+                                <textarea name="code" class="form-control" rows="4" id="code"></textarea>
 
                                 <label>Choose File : </label>
                                 <input type="file" name="pic" class="form-control"/><br/>

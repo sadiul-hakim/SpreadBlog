@@ -4,7 +4,21 @@
     Author     : ACT
 --%>
 
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.hakim.entities.User" %>
+
+<%
+    //authetication
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+
+%>
+
+
 <!DOCTYPE html>
 <html>
     <jsp:include page="head.jsp">

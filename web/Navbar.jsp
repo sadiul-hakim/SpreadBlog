@@ -35,10 +35,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fa fa-volume-control-phone"></span> Contact</a>
+                    <a class="nav-link" href="About.jsp"><span class="fa fa-address-book-o"></span> About</a>
                 </li>
-
-
             </ul>
                        
             <ul class="navbar-nav">
@@ -55,14 +53,6 @@
 
                 <%  }else{%>
                 
-<!--                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="fa fa-bell"></span>
-                    </a>
-                 <ul class="dropdown-menu">
-                     
-                 </ul>
-                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="createPost.jsp">Create Post</a>
                 </li>

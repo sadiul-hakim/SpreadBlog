@@ -16,6 +16,12 @@
 <%@page import="java.util.List" %>
 
 <%
+    //authentication 
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+    
     //Getting post details
     String id=request.getParameter("id");
     PostDao dao=new PostDao(ConnectionProvider.getConnection());
@@ -56,7 +62,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <img src="profile_pics/<%= post.getPic()%>" width="100%" height="400px"/>
+                            <img src="profile_pics/<%= post.getPic()%>" width="100%" height="400px" />
                             <h5 class="display-5"><%= post.getTitle()%></h5>
                             <p class="text-muted card-text"><%= post.getPost_date()%></p>
                             <br/>

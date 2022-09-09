@@ -5,13 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+    <jsp:include page="head.jsp">
+        <jsp:param name="title" value="Error Page"/>
+    </jsp:include>
     <body>
-        <h1>404 Page Not Found</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center offset-2">
+                    <img src="profile_pics/undraw_Page_not_found_re_e9o6.png" alt="Error" width="600px" height="500px"/>
+                    <p>404 Page Not Found.</p>
+                    <a href="index.jsp">Home Page</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

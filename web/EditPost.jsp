@@ -8,11 +8,17 @@
 <%--<%@page import="java.util.List" %>--%>
 <%--<%@page import="com.hakim.entities.Category" %>--%>
 <%@page import="com.hakim.entities.Post" %>
+<%@page import="com.hakim.entities.User" %>
 <%@page import="com.hakim.helper.ConnectionProvider" %>
 <%@page import="com.hakim.dao.ServerCall" %>
 <%@page import="com.hakim.dao.PostDao" %>
 
 <%
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+    
     //List<Category> categories=ServerCall.getCategories(ConnectionProvider.getConnection());
     int id=Integer.parseInt(request.getParameter("id"));
     PostDao dao=new PostDao(ConnectionProvider.getConnection());

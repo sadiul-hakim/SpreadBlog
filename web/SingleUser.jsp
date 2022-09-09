@@ -10,6 +10,11 @@
 <%@page import="com.hakim.helper.ConnectionProvider" %>
 
 <%
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+    
     int id=Integer.parseInt(request.getParameter("id"));
     UserDao user_dao=new UserDao(ConnectionProvider.getConnection());
     User user=user_dao.getUserById(id);

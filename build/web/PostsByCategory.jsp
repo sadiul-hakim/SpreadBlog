@@ -1,11 +1,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.hakim.entities.Post" %>
+<%@page import="com.hakim.entities.User" %>
 <%@page import="com.hakim.helper.ConnectionProvider" %>
 <%@page import="com.hakim.dao.ServerCall" %>
 <%@page import="java.util.List" %>
 
 <%
+    //authentication
+    User auth_user=(User) session.getAttribute("user");
+    if(auth_user==null){
+        response.sendRedirect("login.jsp");
+    }
+    
+    //posts
     int category=Integer.parseInt(request.getParameter("category"));
     List<Post> posts=ServerCall.getPostByCategory(ConnectionProvider.getConnection(),category);
 %>
